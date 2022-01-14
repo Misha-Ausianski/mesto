@@ -11,20 +11,20 @@
     <div class="page">
 <!-- header -->
         <header class="header">
-            <img class="header__logo" src="./images/logo.svg" alt="">
+            <img class="header__logo" src="./images/logo.svg" alt="Логотип сайта Место">
         </header>
 <!-- header -->
         <main class="content">
 <!-- profile -->
             <section class="profile">
-                <img class="profile__avatar" src="./images/avatar.jpg" alt="">
+                <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар пользователя">
                 <div class="profile__conteiner">
                     <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
                         <p class="profile__description">Исследователь океана</p>
                         <button class="profile__edit-button" type="button"><img class="profile__edit-button-img" src="./images/edit-button.svg" alt="Кнопка редактирования профиля"></button>
                     </div>
-                    <button class="add-button" type="button"><img class="add-button__image" src="./images/add-button.svg" alt="Кнопка добавления новых карточек"></button>
+                    <button class="profile__add-button" type="button"><img class="profile__add-button-img" src="./images/add-button.svg" alt="Кнопка добавления новых карточек"></button>
                 </div>
             </section>
 <!-- profile -->
@@ -34,42 +34,42 @@
                     <img class="element__photo" src="./images/braslavskie.jpeg" alt="Фотография Браславских озер">
                     <div class="element__info">
                         <h2 class="element__name">Браславские озера</h2>
-                        <img class="element__like" src="./images/element__like.svg" alt="Лайк фотографии">
+                        <button class="element__like" type="button"><img class="element__like-img" src="./images/element__like.svg" alt="Кнопка лайка фотографии"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__photo" src="./images/Svityaz'.jpeg" alt="Фотография озера Свитязь">
                     <div class="element__info">
                         <h2 class="element__name">Озеро Свитязь</h2>
-                        <img class="element__like" src="./images/element__like.svg" alt="Лайк фотографии">
+                        <button class="element__like" type="button"><img class="element__like-img" src="./images/element__like.svg" alt="Кнопка лайка фотографии"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__photo" src="./images/MelovyyeKar'yery.jpeg" alt="Фотография меловых карьеров">
                     <div class="element__info">
                         <h2 class="element__name">Меловые карьеры</h2>
-                        <img class="element__like" src="./images/element__like.svg" alt="Лайк фотографии">
+                        <button class="element__like" type="button"><img class="element__like-img" src="./images/element__like.svg" alt="Кнопка лайка фотографии"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__photo" src="./images/Belovezhskaya.jpeg" alt="Фотография Беловежской пущи">
                     <div class="element__info">
                         <h2 class="element__name">Беловежская пуща</h2>
-                        <img class="element__like" src="./images/element__like.svg" alt="Лайк фотографии">
+                        <button class="element__like" type="button"><img class="element__like-img" src="./images/element__like.svg" alt="Кнопка лайка фотографии"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__photo" src="./images/Ol'manskiyeBolota.jpeg" alt="Фотография Ольманских болот">
                     <div class="element__info">
                         <h2 class="element__name">Ольманские болота</h2>
-                        <img class="element__like" src="./images/element__like.svg" alt="Лайк фотографии">
+                        <button class="element__like" type="button"><img class="element__like-img" src="./images/element__like.svg" alt="Кнопка лайка фотографии"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img class="element__photo" src="./images/Yel'nya.jpeg" alt="Фотография болота Ельня">
                     <div class="element__info">
                         <h2 class="element__name">Ельня</h2>
-                        <img class="element__like" src="./images/element__like.svg" alt="Лайк фотографии">
+                        <button class="element__like" type="button"><img class="element__like-img" src="./images/element__like.svg" alt="Кнопка лайка фотографии"></button>
                     </div>
                 </div>
             </section>
@@ -83,13 +83,15 @@
 <!-- popup -->
         <section class="popup">
             <div class="popup__container">
-                <form class="popup__form">
+                <form name="popup-profile" class="popup__form">
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input type="text" name="name" class="popup__profile-name" value='Жак-Ив Кусто'>
-                    <input type="text" name="description" class="popup__profile-description" value='Исследователь океана'>
+                    <input type="text" name="name" class="popup__profile popup__profile_type_name" value='Жак-Ив Кусто'>
+                    <input type="text" name="description" class="popup__profile popup__profile_type_description" value='Исследователь океана'>
+                    <!-- <input type="text" name="name" class="popup__profile-name" value='Жак-Ив Кусто'>
+                    <input type="text" name="description" class="popup__profile-description" value='Исследователь океана'> -->
                     <button class="popup__submit-button" type="submit">Сохранить</button>
                 </form>
-                <button class="popup__close-btn"><img class="popup__close-btn-image" src="./images/close-popup-btn.svg" alt=""></button>
+                <button class="popup__close-btn"><img class="popup__close-btn-image" src="./images/close-popup-btn.svg" alt="Кнопка закрытия попапа"></button>
             </div>
         </section>
 <!-- popup -->
