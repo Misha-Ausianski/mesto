@@ -1,18 +1,26 @@
-// popup открытие
 let buttonProfileEdit = document.querySelector('.profile__edit-button');
+let buttonProfileEditClose = document.querySelector('.popup__close-btn');
 let popup = document.querySelector('.popup');
 let popupActive = 'popup_active';
+let formElement = document.querySelector('.popup__form');
+let profileName = document.querySelector('.profile__name');
+let profileDescription = document.querySelector('.profile__description');
+let inputName = document.querySelector('.popup__profile_type_name');
+let inputDescription = document.querySelector('.popup__profile_type_description');
+// popup открытие
 
-const openPopup = function() {
+function openPopup (event) {
+    event.preventDefault();
+    inputName.value = profileName.textContent;
+    inputDescription.value = profileDescription.textContent;
     popup.classList.add(popupActive);
 };
 
 buttonProfileEdit.addEventListener('click', openPopup);
 
 // popup закрытие
-let buttonProfileEditClose = document.querySelector('.popup__close-btn');
 
-const closePopup = function() {
+function closePopup () {
     popup.classList.remove(popupActive);
 };
 
@@ -32,14 +40,10 @@ document.addEventListener('keydown', function (event) {
 
 // popup изменение данных
 
-let formElement = document.querySelector('.popup__form');
-let profileName = document.querySelector('.profile__name');
-let profileDescription = document.querySelector('.profile__description');
-
-function formSubmitHandler (evt) {
-    evt.preventDefault();
-    profileName.innerHTML = evt.target.elements.name.value;
-    profileDescription.innerHTML = evt.target.elements.description.value;
+function formSubmitHandler (event) {
+    event.preventDefault();
+    profileName.textContent = inputName.value;
+    profileDescription.textContent = inputDescription.value;
     closePopup();
 };
 
