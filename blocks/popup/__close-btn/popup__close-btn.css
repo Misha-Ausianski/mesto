@@ -5,6 +5,8 @@
     grid-column: 3/4;
     grid-row: 1/2;
     cursor: pointer;
+    background-image: url(../../../images/close-popup-btn.svg);
+    background-size: 32px;
 }
 
 .popup__close-btn:hover {
@@ -15,5 +17,6 @@
     .popup__close-btn {
         grid-row: 1/2;
         grid-column: 1/2;
+        background-size: 20px;
     }
 }
