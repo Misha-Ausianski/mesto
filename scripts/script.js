@@ -32,13 +32,13 @@ const closePopup = (popupName) => {
 };
 
 // функция лайка карточек
-const handelLikeButton = (e) => {
-    e.target.classList.toggle('element__like-active');
+const handelLikeButton = (event) => {
+    event.target.classList.toggle('element__like-active');
 };
 
 // функция удаления карточек
-const handelDeleteButton = (e) => {
-    e.target.closest('.element').remove();
+const handelDeleteButton = (event) => {
+    event.target.closest('.element').remove();
 };
 
 // функция добавления новой карточки
@@ -53,18 +53,13 @@ const formPopupAddCardHandle = (event) => {
     closePopup(popupAddCard);
 };
 
-popupAddNewCardForm.addEventListener('submit', formPopupAddCardHandle);
-
-// функция открытия/закрытия popup-modal
+// функция открытия popup-modal
 const hangleClickCardPhoto = (item) => {
     openPopup(popupPhoto);
     photoPopupItem.src = item.src;
     photoPopupItem.alt = item.alt;
     photoPopupTitle.textContent = item.alt;
 };
-
-buttonPopupModalСlose.addEventListener('click', () => {
-    closePopup(popupPhoto)});
 
 // функция добавления карточек
 const getCardElement = (item) => {
@@ -95,38 +90,38 @@ initialCards.forEach(item => {
 });
 
 // popup-profile открытие
-function openPopupProfile () {
+const openPopupProfile = () => {
     popupProfileInputName.value = profileName.textContent;
     popupProfileInputDescription.value = profileDescription.textContent;
     openPopup(popupProfile);
 };
 
-buttonProfileEdit.addEventListener('click', openPopupProfile);
-
-// popup-profile закрытие
-buttonPopupProfileClose.addEventListener('click', () => {
-    closePopup(popupProfile)});
-
 // popup-profile изменение данных
-function formPopupProfileHandle (event) {
+const formPopupProfileHandle = (event) => {
     event.preventDefault();
     profileName.textContent = popupProfileInputName.value;
     profileDescription.textContent = popupProfileInputDescription.value;
     closePopup(popupProfile);
 };
 
-popupProfileForm.addEventListener('submit', formPopupProfileHandle);
+buttonProfileEdit.addEventListener('click', openPopupProfile);
 
-// popup-add-card открытие
 buttonAddNewCard.addEventListener('click', () => {
     openPopup(popupAddCard)});
 
-// popup-add-card закрытие
+popupAddNewCardForm.addEventListener('submit', formPopupAddCardHandle);
+
+popupProfileForm.addEventListener('submit', formPopupProfileHandle);
+
+buttonPopupModalСlose.addEventListener('click', () => {
+    closePopup(popupPhoto)});
+
+buttonPopupProfileClose.addEventListener('click', () => {
+    closePopup(popupProfile)});
+
 buttonPopupAddNewCardClose.addEventListener('click', () => {
     popupAddNewCardForm.reset();
     closePopup(popupAddCard);});
-
-
 
 
 
