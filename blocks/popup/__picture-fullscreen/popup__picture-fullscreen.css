@@ -1,0 +1,13 @@
+.popup__picture-fullscreen {
+    max-width: 75vw;
+    max-height: 75vh;
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+@media screen and (max-width: 700px) {
+    .popup__picture-fullscreen  {
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+}
