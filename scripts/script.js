@@ -24,11 +24,27 @@ const cardTemplate = document.querySelector('#card-template').content; // нах
 // функция открытия popup
 const openPopup = (popupName) => {
     popupName.classList.add(popupActive);
+    document.addEventListener('keydown', closePopupKeydownEsc);
+    popupName.addEventListener('click', closePopupOverlayClick);
 }
 
 // функция закрытия popup
 const closePopup = (popupName) => {
     popupName.classList.remove(popupActive);
+};
+
+// Закрытие попапов(доп ф-ии)
+const closePopupOverlayClick = (event) => {
+    if (event.target.classList.contains('popup')) {
+        closePopup(event.target);
+    }
+};
+
+const closePopupKeydownEsc = (event) => {
+    if (event.code === 'Escape') {
+        const popupActiveClose = document.querySelector('.popup_active');
+        closePopup(popupActiveClose);
+    }
 };
 
 // функция лайка карточек
@@ -122,19 +138,3 @@ buttonPopupProfileClose.addEventListener('click', () => {
 buttonPopupAddNewCardClose.addEventListener('click', () => {
     popupAddNewCardForm.reset();
     closePopup(popupAddCard);});
-
-
-
-// Закрытие попапов(доп ф-ии)
-
-// document.addEventListener('keydown', function (event) {
-//     if (event.code === 'Escape') {
-//         closePopup(popupProfile)
-//     }
-// });
-
-// popup.addEventListener('click', function(event) {
-//     if(event.target === popup) {
-//         popup.classList.remove(popupActive);
-//     }
-// });
