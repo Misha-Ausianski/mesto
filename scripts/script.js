@@ -92,7 +92,6 @@ const handleClickCardPhoto = (item) => {
 
 // функция добавления карточек
 const createCard = (item) => {
-    // const cardElement = cardTemplate.cloneNode(true);
     const cardElement= cardTemplate.querySelector('.element').cloneNode(true);
     const cardName = cardElement.querySelector('.element__name');
     const cardPhoto = cardElement.querySelector('.element__photo');
