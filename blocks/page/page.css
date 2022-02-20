@@ -4,12 +4,15 @@
     font-family: 'Inter', Arial, sans-serif;
     font-weight: 400;
     color: #fff;
-    display: flex;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     flex-direction: column;
     margin: 0 auto;
     box-sizing: border-box;
     padding: 45px 0 60px 0;
 }
+
 
 @media screen and (max-width: 568px) {
     .page {
