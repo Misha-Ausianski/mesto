@@ -12,9 +12,10 @@ function addFormListeners (form, config) {
     }));
 }
 
-function fetchValidation(form, config){
+function clearValidation(form, config){
     const inputs =[...form.querySelectorAll(config.inputSelector)];
-    inputs.forEach(input => handleField(form, input, config));
+    inputs.forEach(input => hideError(form, input, config));
+    setSubmitButtonState(form, config);
 }
 
 function handleSubmit(event) {

@@ -33,11 +33,6 @@ const formsValidationConfig = {
 const openPopup = (popupName) => {
     popupName.classList.add(popupActive);
     document.addEventListener('keydown', closePopupKeydownEsc);
-    const form = popupName.querySelector('form')
-        if (form) {
-            fetchValidation(form, formsValidationConfig)
-            setSubmitButtonState(form, formsValidationConfig);
-        }
 }
 
 // функция закрытия popup
@@ -100,8 +95,7 @@ const createCard = (item) => {
 
     cardLike.addEventListener('click', handleLikeButton);
     cardDelete.addEventListener('click', handleDeleteButton);
-    cardPhoto.addEventListener('click', () => {
-    handleClickCardPhoto(cardPhoto)});
+    cardPhoto.addEventListener('click', () => {handleClickCardPhoto(cardPhoto)});
 
     cardName.textContent = item.name;
     cardPhoto.src = item.link;
@@ -118,11 +112,18 @@ initialCards.forEach(item => {
     renderCardElement(item, elementsCardWrap);
 });
 
+const clearPopupFormValidation = (popup) => {
+    const form = popup.querySelector('form');
+    clearValidation(form, formsValidationConfig);
+}
+
 // popup-profile открытие
 const openPopupProfile = () => {
     popupProfileInputName.value = profileName.textContent;
     popupProfileInputDescription.value = profileDescription.textContent;
     openPopup(popupProfile);
+    clearPopupFormValidation(popupProfile);
+
 };
 
 // popup-profile изменение данных
@@ -141,7 +142,9 @@ enableValidation(formsValidationConfig);
 buttonProfileEdit.addEventListener('click', openPopupProfile);
 
 buttonAddNewCard.addEventListener('click', () => {
-    openPopup(popupAddCard)});
+    openPopup(popupAddCard);
+    clearPopupFormValidation(popupAddCard);
+});
 
 popupAddNewCardForm.addEventListener('submit', handleFormPopupAddCard);
 
