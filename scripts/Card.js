@@ -1,4 +1,4 @@
-import {openPopup, photoPopupItem, photoPopupTitle, popupPhoto} from "./script.js";
+import {openPopup, photoPopupItem, photoPopupTitle, popupPhoto} from "./utils.js";
 
 export class Card {
     constructor(data, cardSelector) {
@@ -24,6 +24,7 @@ export class Card {
         this._element = this._getTemplate();
 
         this._element.querySelector('.element__photo').src = this._image;
+        this._element.querySelector('.element__photo').alt = this._text
         this._element.querySelector('.element__name').textContent = this._text;
         this._likeButton = this._element.querySelector('.element__like');
         this._deleteButton = this._element.querySelector('.element__delete-button');
@@ -46,7 +47,8 @@ export class Card {
 
     // функция удаления карточки
     _handleDeleteButton = () => {
-        this._element.querySelector('.element__delete-button').closest('.element').remove();
+        this._element.remove();
+        this._element = null;
     }
 
     // функция открытия popup-modal

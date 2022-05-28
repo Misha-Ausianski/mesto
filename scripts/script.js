@@ -1,13 +1,11 @@
 import { Card } from "./Card.js";
-import { initialCards } from "./cards.js";
 import { FormValidator } from "./FormValidator.js";
+import { popupPhoto, openPopup, closePopup, closePopupOverlayClick, initialCards } from './utils.js';
 
-const popupActive = 'popup_active';
 const buttonProfileEdit = document.querySelector('.profile__edit-button');
 const buttonAddNewCard = document.querySelector('.profile__add-button');
 const popupProfile = document.getElementById('popup-profile');
 const popupAddCard = document.getElementById('popup-add-card');
-const popupPhoto = document.getElementById('popup-modal');
 const buttonPopupProfileClose = popupProfile.querySelector('.popup__close-btn');
 const buttonPopupAddNewCardClose = popupAddCard.querySelector('.popup__close-btn');
 const buttonPopupModalСlose = popupPhoto.querySelector('.popup__close-btn');
@@ -19,8 +17,6 @@ const popupProfileInputName = document.querySelector('.popup__input_type_name');
 const popupProfileInputDescription = document.querySelector('.popup__input_type_description');
 const popupAddCardInputCardPlaceName = popupAddCard.querySelector('.popup__input_type_place-name');
 const popupAddCardInputCardPlaceLink = popupAddCard.querySelector('.popup__input_type_place-link');
-const photoPopupItem = popupPhoto.querySelector('.popup__picture-fullscreen');
-const photoPopupTitle = popupPhoto.querySelector('.popup__picture-name');
 const elementsCardWrap = document.querySelector('.elements');
 const popups = document.querySelectorAll('.popup');
 
@@ -33,39 +29,12 @@ const formsValidationConfig = {
     submitButtonErrorClass: 'popup__submit-button_invalid'
 }
 
-// функция открытия popup
-const openPopup = (popupName) => {
-    popupName.classList.add(popupActive);
-    document.addEventListener('keydown', closePopupKeydownEsc);
-}
-
-// функция закрытия popup
-const closePopup = (popupName) => {
-    popupName.classList.remove(popupActive);
-    document.removeEventListener('keydown', closePopupKeydownEsc);
-};
-
-// Закрытие попапов(клик по оверлею)
-const closePopupOverlayClick = (event) => {
-    if (event.target.classList.contains('popup')) {
-        closePopup(event.target);
-    }
-};
-
-// Закрытие попапов(нажатие на esc)
-const closePopupKeydownEsc = (event) => {
-    if (event.code === 'Escape') {
-        const popupActiveClose = document.querySelector('.popup_active');
-        closePopup(popupActiveClose);
-    }
-};
-
 // popup-profile открытие
 const openPopupProfile = () => {
     popupProfileInputName.value = profileName.textContent;
     popupProfileInputDescription.value = profileDescription.textContent;
     openPopup(popupProfile);
-    ProfileFormValidation.clearValidation(popupProfile);
+    profileFormValidation.clearValidation(popupProfile);
 };
 
 // popup-profile изменение данных
@@ -77,6 +46,23 @@ const handlePopupProfileForm = (event) => {
     closePopup(popupProfile);
 };
 
+// функция создания карточки
+const createCard = (item) => {
+    const card = new Card (item, '#card-template');
+    return card.generateCard();
+}
+
+// функция рендера карточки
+const renderCard = (item) => {
+    const cardElement = createCard(item);
+    elementsCardWrap.prepend(cardElement);
+};
+
+// добавление карточек
+initialCards.forEach((item) => {
+    renderCard(item);
+});
+
 // функция добавления новой карточки
 const handleFormPopupAddCard = (event) => {
     event.preventDefault();
@@ -85,20 +71,11 @@ const handleFormPopupAddCard = (event) => {
         link: popupAddCardInputCardPlaceLink.value
     };
 
-    const card = new Card(item, '#card-template');
-    const cardElement = card.generateCard();
-    elementsCardWrap.prepend(cardElement);
+    renderCard(item);
 
     popupAddNewCardForm.reset();
     closePopup(popupAddCard);
 };
-
-// добавление карточек
-initialCards.forEach((item) => {
-    const card = new Card(item, '#card-template');
-    const cardElement = card.generateCard();
-    elementsCardWrap.prepend(cardElement);
-});
 
 [...popups].forEach(popup => popup.addEventListener('click', closePopupOverlayClick))
 
@@ -106,7 +83,7 @@ buttonProfileEdit.addEventListener('click', openPopupProfile);
 
 buttonAddNewCard.addEventListener('click', () => {
     openPopup(popupAddCard);
-    AddCardFormValidation.clearValidation(popupAddCard);
+    addCardFormValidation.clearValidation(popupAddCard);
 });
 
 popupAddNewCardForm.addEventListener('submit', handleFormPopupAddCard);
@@ -122,10 +99,8 @@ buttonPopupProfileClose.addEventListener('click', () => {
 buttonPopupAddNewCardClose.addEventListener('click', () => {
     closePopup(popupAddCard);});
 
-const ProfileFormValidation = new FormValidator(formsValidationConfig, popupProfileForm);
-ProfileFormValidation.enableValidation();
+const profileFormValidation = new FormValidator(formsValidationConfig, popupProfileForm);
+profileFormValidation.enableValidation();
 
-const AddCardFormValidation = new FormValidator(formsValidationConfig, popupAddNewCardForm);
-AddCardFormValidation.enableValidation();
-
-export {openPopup, photoPopupItem, photoPopupTitle, popupPhoto};
+const addCardFormValidation = new FormValidator(formsValidationConfig, popupAddNewCardForm);
+addCardFormValidation.enableValidation();
