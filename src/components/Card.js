@@ -1,11 +1,9 @@
-import {openPopup, photoPopupItem, photoPopupTitle, popupPhoto} from "./utils.js";
-
 export class Card {
-    constructor(data, cardSelector) {
-
+    constructor(data, cardSelector, handleCardClick) {
         this._text = data.name;
         this._image = data.link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     // забираем разметку из HTML и клонируем элемент
@@ -15,7 +13,6 @@ export class Card {
             .content
             .querySelector('.element')
             .cloneNode(true);
-
             return cardElement;
     }
 
@@ -28,6 +25,7 @@ export class Card {
         this._element.querySelector('.element__name').textContent = this._text;
         this._likeButton = this._element.querySelector('.element__like');
         this._deleteButton = this._element.querySelector('.element__delete-button');
+        // this._elementPhoto = this._element.querySelector('.element__photo');
 
         this._setEventListeners();
 
@@ -37,25 +35,18 @@ export class Card {
     _setEventListeners = () => {
         this._likeButton.addEventListener('click',  this._handleLikeButton);
         this._deleteButton.addEventListener('click', this._handleDeleteButton);
-        this._element.querySelector('.element__photo').addEventListener('click', this._handleImage);
+        this._element.querySelector('.element__photo').addEventListener('click', () => {this._handleCardClick(this._text, this._image)});
     }
 
     // функция лайка карточки
     _handleLikeButton = () => {
-        this._element.querySelector('.element__like').classList.toggle('element__like-active');
+        // this._element.querySelector('.element__like').classList.toggle('element__like-active');
+        this._likeButton.classList.toggle('element__like-active');
     }
 
     // функция удаления карточки
     _handleDeleteButton = () => {
         this._element.remove();
         this._element = null;
-    }
-
-    // функция открытия popup-modal
-    _handleImage = () => {
-        openPopup(popupPhoto);
-        photoPopupItem.src = this._image;
-        photoPopupItem.alt = this._text;
-        photoPopupTitle.textContent = this._text;
     }
 }
