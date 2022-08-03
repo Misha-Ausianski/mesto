@@ -33,18 +33,12 @@ export class FormValidator {
     }
 
     _addFormListeners () {
-        this._formElement.addEventListener('submit', this._handleSubmit)
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener("input", () => {
                 this._handleField(inputElement);
                 this._setSubmitButtonState();
             });
         })
-    }
-
-    // отмена стандартного поведения формы
-    _handleSubmit(e) {
-        e.preventDefault();
     }
 
     // проверка на валидность

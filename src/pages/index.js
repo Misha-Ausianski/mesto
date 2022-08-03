@@ -21,10 +21,10 @@ const handleCardClick = (name, link) => {
 // Создание popup профиля
 const profilePopup = new PopupWithForm({
     popupSelector: '.popup-profile',
-    handleFormSubmit: () => {
+    handleFormSubmit: (formData) => {
         pageUserInfo.setUserInfo({
-            name: popupProfileInputName.value,
-            description: popupProfileInputDescription.value,
+            name: formData.editProfileName,
+            description: formData.editProfileDescription,
         });
     },
 });
@@ -38,10 +38,10 @@ const pageUserInfo = new UserInfo({
 
 // открытие popup профиля
 buttonProfileEdit.addEventListener('click', () => {
-    profileFormValidation.clearValidation(profilePopup);
     profilePopup.open();
     popupProfileInputName.value = pageUserInfo.getUserInfo().name;
     popupProfileInputDescription.value = pageUserInfo.getUserInfo().description;
+    profileFormValidation.clearValidation();
 });
 
 // функция создания карточки
@@ -63,8 +63,8 @@ cardList.renderItems();
 // создание popup добавления карточки
 const addCardPopup = new PopupWithForm({
     popupSelector: '.popup-add-card',
-    handleFormSubmit: (data) => {
-        const createdCard = createCard(data)
+    handleFormSubmit: (formData) => {
+        const createdCard = createCard(formData)
         cardList.setItem(createdCard);
     }
 });

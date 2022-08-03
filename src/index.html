@@ -44,9 +44,9 @@
             <div class="popup__container">
                 <form class="popup__form" name="popup-profile-info" novalidate>
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input type="text" id="profile-name" class="popup__input popup__input_type_name" placeholder="Ваше имя" required minlength="2" maxlength="40">
+                    <input type="text" id="profile-name" name="editProfileName" class="popup__input popup__input_type_name" placeholder="Ваше имя" required minlength="2" maxlength="40">
                     <span id="profile-name-error" class="error"></span>
-                    <input type="text" id="profile-description" class="popup__input popup__input_type_description" placeholder="Ваше увлечение" required minlength="2" maxlength="200">
+                    <input type="text" id="profile-description" name="editProfileDescription" class="popup__input popup__input_type_description" placeholder="Ваше увлечение" required minlength="2" maxlength="200">
                     <span id="profile-description-error" class="error"></span>
                     <button class="popup__submit-button" type="submit">Сохранить</button>
                 </form>
@@ -93,6 +93,6 @@
     </div>
 </template>
 <!-- card-template -->
-<script type="module" src="./pages/index.js"></script>
+<!-- <script type="module" src="./pages/index.js"></script> -->
 </body>
 </html>

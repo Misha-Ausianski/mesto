@@ -20,12 +20,12 @@ export class Card {
     generateCard() {
         this._element = this._getTemplate();
 
-        this._element.querySelector('.element__photo').src = this._image;
-        this._element.querySelector('.element__photo').alt = this._text
+        this._cardImage = this._element.querySelector('.element__photo');
+        this._cardImage.src = this._image;
+        this._cardImage.alt = this._text
         this._element.querySelector('.element__name').textContent = this._text;
         this._likeButton = this._element.querySelector('.element__like');
         this._deleteButton = this._element.querySelector('.element__delete-button');
-        // this._elementPhoto = this._element.querySelector('.element__photo');
 
         this._setEventListeners();
 
@@ -35,12 +35,11 @@ export class Card {
     _setEventListeners = () => {
         this._likeButton.addEventListener('click',  this._handleLikeButton);
         this._deleteButton.addEventListener('click', this._handleDeleteButton);
-        this._element.querySelector('.element__photo').addEventListener('click', () => {this._handleCardClick(this._text, this._image)});
+        this._cardImage.addEventListener('click', () => {this._handleCardClick(this._text, this._image)});
     }
 
     // функция лайка карточки
     _handleLikeButton = () => {
-        // this._element.querySelector('.element__like').classList.toggle('element__like-active');
         this._likeButton.classList.toggle('element__like-active');
     }
 
