@@ -14,4 +14,4 @@ _______________________
 7. Подключен webpack.
 8. API.
 
-* [Ссылка на сайт](https://misha-ausianski.github.io/mesto)
+* [Ссылка на сайт](https://misha-ausianski.github.io/mesto/)
