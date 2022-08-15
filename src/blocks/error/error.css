@@ -6,9 +6,9 @@
     box-sizing: border-box;
     display: none;
     position: absolute;
-    top: 143px;
+    top: 200px;
 }
 
-.error:last-of-type {
-    top: 200px;
+.error:first-of-type {
+    top: 143px;
 }

@@ -17,11 +17,13 @@
         <main class="content">
 <!-- profile -->
             <section class="profile">
-                <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар пользователя">
+                <div class="profile__avatar">
+                    <img class="profile__avatar-img" src="<%=require('./images/avatar.jpg')%>" alt="Аватар пользователя">
+                </div>
                 <div class="profile__conteiner">
                     <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <p class="profile__description">Исследователь океана</p>
+                        <p class="profile__about">Исследователь океана</p>
                         <button class="profile__edit-button" type="button"></button>
                     </div>
                     <button class="profile__add-button" type="button"></button>
@@ -44,9 +46,9 @@
             <div class="popup__container">
                 <form class="popup__form" name="popup-profile-info" novalidate>
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input type="text" id="profile-name" name="editProfileName" class="popup__input popup__input_type_name" placeholder="Ваше имя" required minlength="2" maxlength="40">
+                    <input type="text" id="profile-name" name="name" class="popup__input popup__input_type_name" placeholder="Ваше имя" required minlength="2" maxlength="40">
                     <span id="profile-name-error" class="error"></span>
-                    <input type="text" id="profile-description" name="editProfileDescription" class="popup__input popup__input_type_description" placeholder="Ваше увлечение" required minlength="2" maxlength="200">
+                    <input type="text" id="profile-description" name="about" class="popup__input popup__input_type_about" placeholder="Ваше увлечение" required minlength="2" maxlength="200">
                     <span id="profile-description-error" class="error"></span>
                     <button class="popup__submit-button" type="submit">Сохранить</button>
                 </form>
@@ -70,6 +72,30 @@
             </div>
         </section>
 <!-- popup-photo -->
+<!-- popup-avatar -->
+        <section class="popup popup-avatar">
+            <div class="popup__container">
+                <form class="popup__form" name="popup-avatar" novalidate>
+                    <h2 class="popup__title">Обновить аватар</h2>
+                    <input type="url" id="avatar-link" name="link" class="popup__input popup__input_type_avatar-link" placeholder="Ссылка на аватар" required>
+                    <span id="avatar-link-error" class="error"></span>
+                    <button class="popup__submit-button" type="submit">Сохранить</button>
+                </form>
+                <button class="popup__close-btn"></button>
+            </div>
+        </section>
+<!-- popup-avatar -->
+<!-- popup-confirm-del -->
+        <section class="popup popup-confirm">
+            <div class="popup__container">
+                <form class="popup__form" name="popup-confirm">
+                    <h2 class="popup__title">Вы уверены?</h2>
+                    <button class="popup__submit-button" type="submit">Да</button>
+                </form>
+                <button class="popup__close-btn"></button>
+            </div>
+        </section>
+<!-- popup-confirm-del -->
 <!-- popup-modal -->
         <!-- <section class="popup" id="popup-modal"> -->
         <section class="popup popup-modal">
@@ -87,12 +113,14 @@
         <img class="element__photo">
         <div class="element__info">
             <h2 class="element__name"></h2>
-            <button class="element__like" type="button"></button>
+            <div class="element__likes-container">
+                <button class="element__like" type="button"></button>
+                <p class="element__likes-amount"></p>
+            </div>
         </div>
         <button class="element__delete-button"></button>
     </div>
 </template>
 <!-- card-template -->
-<!-- <script type="module" src="./pages/index.js"></script> -->
 </body>
 </html>

@@ -13,4 +13,4 @@ _______________________
 6. Разделение проекта на модули.
 7. Подключен webpack.
 
-* [Ссылка на сайт](https://misha-ausianski.github.io/mesto/index.html)
+* [Ссылка на сайт](https://misha-ausianski.github.io/mesto)
